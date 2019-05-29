@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+  <form method="POST" action="">
+    Name<input type="text" id="name" name="name">
+    Email<input type="email" id="email" name="email">
+    Password<input type="password" id="password" name="password">
+    <button id="btn" onclick="" name="">Save</button>
+  </form>
+  <script>
+    $(document).ready(function(){
+      $('#btn').click(function(evt){
+        evt.preventDefault();
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var password = $('#password').val();
+        if(name == '' || email == '' || password == '') {
+          return alert('Please fill all fields ..');
+        }        
+        $.ajax({
+          url: "saveData.php",
+          type: "POST",
+          data:{
+          name: name,
+          email: email,
+          password: password
+        },
+        success: function(response){
+          
+           alert('Data is saved');
+        }
+      });
+      });
+    });
+  </script>
+</body>
+</html>
